@@ -147,7 +147,6 @@ func (m Model) View() string {
 }
 
 // TODO:
-// Create GitHub Repo
 // Create a check for file comptability with by mpv.io
 // Create installation script
 // Maybe add SQLite db to persist last Path used by user

@@ -8,7 +8,7 @@ To run use:
 ``` 
 go run main.go
 ```
-or build/run the excutable
+or build/run the executable
 
 ```
 go build

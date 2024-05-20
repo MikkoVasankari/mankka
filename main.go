@@ -146,11 +146,6 @@ func (m Model) View() string {
 		"\n")
 }
 
-// TODO:
-// Create a check for file comptability with by mpv.io
-// Create installation script
-// Maybe add SQLite db to persist last Path used by user
-
 func (m *Model) resetLists() {
 
 	if len(m.list.Items()) > 0 {

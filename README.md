@@ -15,3 +15,7 @@ go build
 ``` 
 
 Tested to work with both Linux and Windows
+
+### TODO
+- [ ] Create a check for file comptability with by mpv.io
+- [ ] Create installation script

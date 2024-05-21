@@ -18,4 +18,4 @@ go build
 
 
 ### TODO
-- [ ] Create a check for file comptability with by mpv.io
+- [ ] Create a check for file compatability with by mpv.io

@@ -3,7 +3,7 @@ Go CLI application to play media files with MPV.io
 
 Requirements: <br>
 [mpv.io](https://mpv.io/) <br>
-[Go](https://go.dev/dl/)
+[Go](https://go.dev/doc/install)
 
 ### To build/run the project
 To run use:

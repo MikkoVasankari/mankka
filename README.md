@@ -18,4 +18,6 @@ go build
 
 
 ### TODO
+- [ ] Create a CLI argument for filepath that can be used when program is ran
+- [ ] Create a sqlite db file for saving regularly used filepaths
 - [ ] Create a check for file compatability with by mpv.io

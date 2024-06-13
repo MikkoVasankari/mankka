@@ -43,3 +43,5 @@ else
     echo "Build failed."
     exit 1
 fi
+
+sudo cp $OUTPUT_BINARY /usr/bin/$OUTPUT_BINARY

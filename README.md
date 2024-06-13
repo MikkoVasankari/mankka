@@ -5,19 +5,17 @@ Requirements: <br>
 [mpv.io](https://mpv.io/) <br>
 [Go](https://go.dev/doc/install)
 
-### To build/run the project
-To run use:
+### To build project
+To install project
 ``` 
-go run main.go
+.install/install.sh
 ```
-or build the executable
-
+and then to run use
 ```
-go build
+mankka
 ``` 
-
 
 ### TODO
-- [ ] Create a CLI argument for filepath that can be used when program is ran
-- [ ] Create a sqlite db file for saving regularly used filepaths
-- [ ] Create a check for file compatability with by mpv.io
+- [ ] Create a CLI argument for filepath that can be used when program is ran.
+- [ ] Create a sqlite db file for saving regularly used filepaths.
+- [ ] Create a check for file compatability with by mpv.io.

@@ -25,6 +25,22 @@ var (
 	Sapphire = lipgloss.Color("#7dc4e4")
 )
 
+// Initialize styles for each section
+var (
+	pathSelectStyle = lipgloss.NewStyle().
+			Padding(0, 3).
+			Foreground(Green)
+
+	pathselectQuestionStyle = lipgloss.NewStyle().
+				Padding(0, 3).
+				Foreground(Blue).
+				Bold(true)
+
+	listStyle = lipgloss.NewStyle().
+			Padding(0, 1).
+			BorderForeground(Mauve)
+)
+
 type Item struct {
 	title, desc string
 }
@@ -101,24 +117,7 @@ func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	return m, cmd
 }
 
-// Initialize styles for section
-var (
-	pathSelectStyle = lipgloss.NewStyle().
-			Padding(0, 3).
-			Foreground(Green)
-
-	pathselectQuestionStyle = lipgloss.NewStyle().
-				Padding(0, 3).
-				Foreground(Blue).
-				Bold(true)
-
-	listStyle = lipgloss.NewStyle().
-			Padding(0, 1).
-			BorderForeground(Mauve)
-)
-
 func (m Model) View() string {
-
 	if m.focused == 1 {
 		pathSelectStyle = lipgloss.NewStyle().
 			Padding(0, 1).
@@ -132,7 +131,6 @@ func (m Model) View() string {
 	}
 
 	return ("\n" +
-
 		pathselectQuestionStyle.
 			Render("Give a path to your directory to play files from: ") +
 		"\n\n" +
@@ -147,7 +145,6 @@ func (m Model) View() string {
 }
 
 func (m *Model) resetLists() {
-
 	if len(m.list.Items()) > 0 {
 		for i := len(m.list.Items()) - 1; i >= 0; i-- {
 			m.list.RemoveItem(i)
@@ -181,12 +178,10 @@ func (m *Model) createListOfFiles() []tea.Cmd {
 
 func parseSongId(inputSong string) string {
 	slicedcInputSong := strings.Split(inputSong, ".")
-
 	return slicedcInputSong[0]
 }
 
 func initialModel() Model {
-
 	ti := textinput.New()
 	ti.Placeholder = "/Your/path/here"
 	ti.Focus()
@@ -232,7 +227,6 @@ func initialModel() Model {
 }
 
 func main() {
-
 	if _, err := tea.NewProgram(initialModel(), tea.WithAltScreen()).Run(); err != nil {
 		fmt.Println("Error running program:", err)
 		os.Exit(1)

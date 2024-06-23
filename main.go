@@ -181,9 +181,19 @@ func parseSongId(inputSong string) string {
 	return slicedcInputSong[0]
 }
 
-func initialModel() Model {
+func initialModel(CliArg []string) Model {
 	ti := textinput.New()
 	ti.Placeholder = "/Your/path/here"
+
+	if len(CliArg) > 1 && CliArg[1] == "." {
+		value, _ := os.Getwd()
+		ti.SetValue(value)
+	} else if len(CliArg) > 1 {
+		ti.SetValue(CliArg[1])
+	} else {
+		ti.SetValue("")
+	}
+
 	ti.Focus()
 	ti.TextStyle = pathSelectStyle
 
@@ -227,7 +237,8 @@ func initialModel() Model {
 }
 
 func main() {
-	if _, err := tea.NewProgram(initialModel(), tea.WithAltScreen()).Run(); err != nil {
+	CliArg := os.Args
+	if _, err := tea.NewProgram(initialModel(CliArg), tea.WithAltScreen()).Run(); err != nil {
 		fmt.Println("Error running program:", err)
 		os.Exit(1)
 	}

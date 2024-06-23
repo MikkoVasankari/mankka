@@ -1,5 +1,5 @@
 # mankka
-Go CLI application to play media files with MPV
+Go TUI application to play media files with MPV
 
 Requirements: <br>
 - [mpv](https://mpv.io/) <br>

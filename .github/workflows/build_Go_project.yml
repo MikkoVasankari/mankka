@@ -1,8 +1,7 @@
 name: Build Executable from Go project
 
 on:
-  push:
-    branches: [ "main" ]
+  workflow_dispatch:
 
 jobs:
 

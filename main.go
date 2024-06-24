@@ -74,30 +74,24 @@ func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 				return m, tea.Quit
 			case "enter", "tab":
 				m.focused = 1
-
 				cmds = m.createListOfFiles()
-
 				return m, tea.Batch(cmds...)
 			}
 		}
 		m.ti, cmd = m.ti.Update(msg)
 
 	} else if m.focused == 1 {
-
 		switch msg := msg.(type) {
 		case tea.KeyMsg:
-
 			if m.list.FilterState() == list.Filtering {
 				break
 			}
-
 			switch msg.String() {
 			case "q", "ctrl+c":
 				return m, tea.Quit
 			case "tab":
 				m.focused = 0
 				m.resetLists()
-
 			case "enter":
 				var songId string
 
@@ -130,7 +124,7 @@ func (m Model) View() string {
 			Foreground(Green)
 	}
 
-	return ("\n" +
+	return ("\n " +
 		pathselectQuestionStyle.
 			Render("Give a path to your directory to play files from: ") +
 		"\n\n" +
@@ -202,7 +196,7 @@ func initialModel(CliArg []string) Model {
 	listStyling := list.NewDefaultDelegate()
 	listStyling.Styles.SelectedTitle = lipgloss.NewStyle().
 		Foreground(Green).
-		Padding(0, 2).
+		Padding(0, 1).
 		Border(lipgloss.NormalBorder(), false, false, false, true).BorderForeground(Green)
 	listStyling.Styles.SelectedDesc = lipgloss.NewStyle().
 		Foreground(Green).
@@ -214,7 +208,7 @@ func initialModel(CliArg []string) Model {
 		Foreground(Lavender).
 		Padding(0, 2)
 
-	list := list.New(items, listStyling, 100, 20)
+	list := list.New(items, listStyling, 100, 16)
 	list.Title = "List of playable files:"
 	list.Styles.Title = lipgloss.NewStyle().
 		Foreground(Blue).

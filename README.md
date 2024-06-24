@@ -7,7 +7,7 @@ Requirements: <br>
 
 <br>
 <details>
-<summary> To install project on linux </summary>
+<summary> To install project on Linux </summary>
 
   <br>
   
@@ -20,8 +20,16 @@ Requirements: <br>
   
   <br>
   
-  alternatively you can
-  Download the executable as zip from repo [mankka](https://github.com/MikkoVasankari/mankka/raw/main/mankka.zip)
+  alternatively you can download the executable as zip from repo [mankka.zip](https://github.com/MikkoVasankari/mankka/raw/main/mankka.zip)
+  
+</details>
+
+<details>
+<summary> To install project on Windows </summary>
+
+  <br>
+  
+  Download the executable as zip from repo [mankka.zip](https://github.com/MikkoVasankari/mankka/raw/main/mankka.zip)
   
 </details>
 

@@ -44,4 +44,5 @@ else
     exit 1
 fi
 
+echo "Adding created binary $OUTPUT_BINARY to /usr/bin/"
 sudo cp $OUTPUT_BINARY /usr/bin/$OUTPUT_BINARY

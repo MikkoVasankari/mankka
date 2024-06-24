@@ -47,3 +47,4 @@ mankka /path/to/your/dir
 ### TODO
 - [ ] Create a sqlite db file for saving regularly used filepaths.
 - [ ] Create a check for file compatability with by mpv.
+- [ ] Make Windows installation script.

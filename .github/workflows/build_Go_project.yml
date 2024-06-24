@@ -1,4 +1,4 @@
-name: Build Executable from Go project
+name: Build Executables from Golang project
 
 on:
   workflow_dispatch:

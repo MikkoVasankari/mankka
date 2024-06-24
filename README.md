@@ -2,16 +2,30 @@
 Go TUI application to play media files with MPV
 
 Requirements: <br>
-- [mpv](https://mpv.io/) <br>
-- [Golang](https://go.dev/doc/install)
+  - [mpv](https://mpv.io/) 
+  - [Golang](https://go.dev/doc/install)
 
-### To install project on linux
-!!! This command tries to install mpv media player if user don't have it.
-``` 
-.install/install.sh
-```
+<br>
+<details>
+<summary> To install project on linux </summary>
 
-### Running the application
+  <br>
+  
+  ```
+  .install/install.sh
+  ```
+  This script tries to install mpv media player if user don't have it.
+  
+  then follow usage [instructions](https://github.com/MikkoVasankari/mankka#running-the-application).
+  
+  <br>
+  
+  alternatively you can
+  Download the executable as zip from repo [mankka](https://github.com/MikkoVasankari/mankka/raw/main/mankka.zip)
+  
+</details>
+
+### Using the application
 ```
 mankka . 
 ``` 

@@ -6,7 +6,7 @@ on:
 
 jobs:
 
-  build:
+  build_for_linux:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
@@ -23,4 +23,23 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: mankka
+        path: ./mankka
+        
+  build_for_windows:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Go
+      uses: actions/setup-go@v5
+      with:
+        go-version: '1.22'
+
+    - name: Build
+      run: go build -v -o mankka/ ./...
+
+    - name: Upload executable as artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: mankka.exe
         path: ./mankka

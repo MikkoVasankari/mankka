@@ -16,7 +16,7 @@ Requirements: <br>
   ```
   This script tries to install mpv media player if user don't have it.
   
-  then follow usage [instructions](https://github.com/MikkoVasankari/mankka#running-the-application).
+  then follow usage [instructions](https://github.com/MikkoVasankari/mankka?tab=readme-ov-file#using-the-application).
   
   <br>
   

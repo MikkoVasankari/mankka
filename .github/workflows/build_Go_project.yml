@@ -41,5 +41,5 @@ jobs:
     - name: Upload executable as artifact
       uses: actions/upload-artifact@v4
       with:
-        name: mankka.exe
+        name: mankka
         path: ./mankka

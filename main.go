@@ -97,7 +97,7 @@ func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 
 				songId = parseSongId(m.list.SelectedItem().FilterValue())
 
-				args := []string{"--volume=50", "--geometry=800x600", "--playlist-start=" + songId, "--loop-playlist=inf"}
+				args := []string{"--volume=50", "--geometry=800x600", "--playlist-start=" + songId, "--loop-playlist=inf", "--no-video"}
 				args = append(args, m.songDir...)
 				return m, tea.Batch(
 					//tea.Printf("Selected song: %s", m.list.Index()),

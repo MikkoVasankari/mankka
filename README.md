@@ -46,5 +46,4 @@ mankka /path/to/your/dir
 
 ### TODO
 - [ ] Create a sqlite db file for saving regularly used filepaths.
-- [ ] Make Windows installation script.
 - [ ] Make setting for no-video flag / In general make setting how mpv should act

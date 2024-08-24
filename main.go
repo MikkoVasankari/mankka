@@ -158,12 +158,11 @@ func (m *Model) createListOfFiles() []tea.Cmd {
 	fileID := 0
 
 	for _, value := range dir {
-		if !value.IsDir() {
-			m.songDir = append(m.songDir, m.ti.Value()+"/"+value.Name())
-			newEntry := Item{title: strconv.Itoa(fileID) + ". " + value.Name(), desc: ""}
-			insCmd = m.list.InsertItem(fileID, newEntry)
-			fileID++
-		}
+		// Make files and directories different from each other
+		m.songDir = append(m.songDir, m.ti.Value()+"/"+value.Name())
+		newEntry := Item{title: strconv.Itoa(fileID) + ". " + value.Name(), desc: ""}
+		insCmd = m.list.InsertItem(fileID, newEntry)
+		fileID++
 
 		cmds = append(cmds, insCmd)
 	}

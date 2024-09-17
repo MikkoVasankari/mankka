@@ -18,9 +18,8 @@ Requirements: <br>
   To use the application follow [Using the application instructions](https://github.com/MikkoVasankari/mankka?tab=readme-ov-file#using-the-application).
 
   alternatively you can download the executable as zip from repo [mankka.zip](https://github.com/MikkoVasankari/mankka/raw/main/mankka.zip).
-
+_________________
 </details>
-
 <details>
 <summary> To install application on Windows </summary>
 
@@ -28,6 +27,7 @@ Requirements: <br>
 
   Download the executable as zip from repo [mankka.zip](https://github.com/MikkoVasankari/mankka/raw/main/mankka.zip).
 
+_________________
 </details>
 
 ### Using the application

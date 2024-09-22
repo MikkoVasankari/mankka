@@ -29,7 +29,7 @@ _________________
 
 _________________
 </details>
-
+<details>
 <summary> Build from source </summary>
 
   <br>
@@ -37,7 +37,8 @@ _________________
   ```
   git clone https://github.com/MikkoVasankari/mankka.git
   ```
-  Navigate to cloned repo and run go build or installation script suitable for you
+  Navigate to cloned repo and run go build or installation script suitable for you from /install/ directory
+
 
   ```
   go build

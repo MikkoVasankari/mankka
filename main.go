@@ -22,7 +22,6 @@ var (
 	Mauve    = lipgloss.Color("#c6a0f6")
 	Lavender = lipgloss.Color("#b8c0e0")
 	Blue     = lipgloss.Color("#8aadf4")
-	Sapphire = lipgloss.Color("#7dc4e4")
 )
 
 // Initialize styles for each section
@@ -30,6 +29,10 @@ var (
 	pathSelectStyle = lipgloss.NewStyle().
 			Padding(0, 3).
 			Foreground(Green)
+
+	inputErrStyle = lipgloss.NewStyle().
+			Padding(0, 3).
+			Foreground(Mauve)
 
 	pathselectQuestionStyle = lipgloss.NewStyle().
 				Padding(0, 3).
@@ -50,10 +53,11 @@ func (i Item) Description() string { return i.desc }
 func (i Item) FilterValue() string { return i.title }
 
 type Model struct {
-	list    list.Model
-	ti      textinput.Model
-	focused int
-	songDir []string
+	list     list.Model
+	ti       textinput.Model
+	inputErr string
+	focused  int
+	songDir  []string
 }
 
 func (m Model) Init() tea.Cmd {
@@ -73,6 +77,7 @@ func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			case "q", "ctrl+c":
 				return m, tea.Quit
 			case "enter", "tab":
+				m.inputErr = ""
 				m.focused = 1
 				cmds = m.createListOfFiles()
 				return m, tea.Batch(cmds...)
@@ -124,12 +129,14 @@ func (m Model) View() string {
 			Foreground(Green)
 	}
 
-	return ("\n " +
+	return ("\n" +
 		pathselectQuestionStyle.
 			Render("Give a path to your directory to play files from: ") +
 		"\n\n" +
 		pathSelectStyle.
 			Render(m.ti.View()) +
+		"\n\n" +
+		inputErrStyle.Render(m.inputErr) +
 		"\n\n" +
 		listStyle.
 			Render(m.list.View()) +
@@ -154,7 +161,14 @@ func (m *Model) createListOfFiles() []tea.Cmd {
 		insCmd tea.Cmd
 	)
 
-	dir, _ := os.ReadDir(m.ti.Value())
+	dir, err := os.ReadDir(m.ti.Value())
+
+	if err != nil {
+		m.inputErr = "Couldn't find your path give another one"
+		m.focused = 0
+		return cmds
+	}
+
 	fileID := 0
 
 	for _, value := range dir {
@@ -190,6 +204,8 @@ func initialModel(CliArg []string) Model {
 	ti.Focus()
 	ti.TextStyle = pathSelectStyle
 
+	inputErr := ""
+
 	items := []list.Item{}
 
 	listStyling := list.NewDefaultDelegate()
@@ -222,10 +238,11 @@ func initialModel(CliArg []string) Model {
 	initSongDir := []string{}
 
 	return Model{
-		list:    list,
-		ti:      ti,
-		focused: 0,
-		songDir: initSongDir,
+		list:     list,
+		ti:       ti,
+		inputErr: inputErr,
+		focused:  0,
+		songDir:  initSongDir,
 	}
 }
 

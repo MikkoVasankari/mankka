@@ -7,11 +7,10 @@ import (
 )
 
 var (
-	Blue     = lipgloss.Color("#8aadf4")
-	Sapphire = lipgloss.Color("7dc4e4")
+	Blue = lipgloss.Color("#8aadf4")
 
 	keyStyle  = lipgloss.NewStyle().Foreground(Blue).Bold(true)
-	descStyle = lipgloss.NewStyle().Foreground(Sapphire)
+	descStyle = lipgloss.NewStyle().Foreground(Blue)
 )
 
 func CustomHelpView() string {

@@ -248,6 +248,12 @@ func initialModel(CliArg []string) Model {
 
 func main() {
 	CliArg := os.Args
+	if _, err := exec.LookPath("mpv"); err != nil {
+		fmt.Println("You don't have mpv installed on your machine")
+		fmt.Println("Install mpv via installation script or from https//mpv.io/")
+		os.Exit(1)
+	}
+
 	if _, err := tea.NewProgram(initialModel(CliArg), tea.WithAltScreen()).Run(); err != nil {
 		fmt.Println("Error running program:", err)
 		os.Exit(1)

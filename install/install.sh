@@ -7,7 +7,7 @@ command_exists() {
 install_mpv() {
     if command_exists apt-get; then
         echo "Installing mpv using apt-get..."
-        sudo apt-get update
+        sudo apt-get update -y
         sudo apt-get install -y mpv
     elif command_exists dnf; then
         echo "Installing mpv using dnf..."
@@ -29,7 +29,7 @@ else
     fi
 fi
 
-PROJECT_DIR=$(pwd) 
+PROJECT_DIR=$(pwd)
 OUTPUT_BINARY="mankka"
 
 cd "$PROJECT_DIR" || { echo "Failed to change directory"; exit 1; }

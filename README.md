@@ -30,6 +30,22 @@ _________________
 _________________
 </details>
 
+<summary> Build from source </summary>
+
+  <br>
+
+  ```
+  git clone https://github.com/MikkoVasankari/mankka.git
+  ```
+  Navigate to cloned repo and run go build or installation script suitable for you
+
+  ```
+  go build
+  ```
+
+_________________
+</details>
+
 ### Using the application
 ```
 mankka .

@@ -250,7 +250,7 @@ func main() {
 	CliArg := os.Args
 	if _, err := exec.LookPath("mpv"); err != nil {
 		fmt.Println("You don't have mpv installed on your machine")
-		fmt.Println("Install mpv via installation script or from https//mpv.io/")
+		fmt.Println("Install mpv via installation script or from https://mpv.io/")
 		os.Exit(1)
 	}
 

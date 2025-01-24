@@ -175,7 +175,6 @@ func (m *Model) createListOfFiles() []tea.Cmd {
 
 	for _, value := range dir {
 		var newEntry Item
-		// Make files and directories different from each other
 		m.songDir = append(m.songDir, m.ti.Value()+"/"+value.Name())
 
 		if value.IsDir() {

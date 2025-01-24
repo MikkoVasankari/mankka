@@ -44,9 +44,9 @@ _________________
   go build
   ```
 
-_________________
 </details>
 
+_________________
 ### Using the application
 ```
 mankka .

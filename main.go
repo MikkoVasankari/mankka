@@ -22,6 +22,7 @@ var (
 	Mauve    = lipgloss.Color("#c6a0f6")
 	Lavender = lipgloss.Color("#b8c0e0")
 	Blue     = lipgloss.Color("#8aadf4")
+	Maroon   = lipgloss.Color("#ee99a0")
 )
 
 // Initialize styles for each section
@@ -38,6 +39,8 @@ var (
 				Padding(0, 3).
 				Foreground(Blue).
 				Bold(true)
+
+	dirStyle = lipgloss.NewStyle().Foreground(Maroon)
 
 	listStyle = lipgloss.NewStyle().
 			Padding(0, 1).
@@ -101,7 +104,6 @@ func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 				var songId string
 
 				songId = parseSongId(m.list.SelectedItem().FilterValue())
-
 				args := []string{"--volume=50", "--geometry=800x600", "--playlist-start=" + songId, "--loop-playlist=inf", "--no-video"}
 				args = append(args, m.songDir...)
 				return m, tea.Batch(
@@ -172,9 +174,16 @@ func (m *Model) createListOfFiles() []tea.Cmd {
 	fileID := 0
 
 	for _, value := range dir {
+		var newEntry Item
 		// Make files and directories different from each other
 		m.songDir = append(m.songDir, m.ti.Value()+"/"+value.Name())
-		newEntry := Item{title: strconv.Itoa(fileID) + ". " + value.Name(), desc: ""}
+
+		if value.IsDir() {
+			newEntry = Item{title: strconv.Itoa(fileID) + ". " + dirStyle.Render(value.Name()+""), desc: ""}
+		} else {
+			newEntry = Item{title: strconv.Itoa(fileID) + ". " + value.Name(), desc: ""}
+		}
+
 		insCmd = m.list.InsertItem(fileID, newEntry)
 		fileID++
 

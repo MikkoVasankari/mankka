@@ -10,4 +10,4 @@
         state: present
 
     - name: Build mankka project
-      include_tasks: roles/mankka/mankka.yu
+      include_tasks: roles/mankka/mankka.yml

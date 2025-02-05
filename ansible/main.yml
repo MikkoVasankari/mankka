@@ -1,4 +1,4 @@
-# Ansible file for mankka project
+# Ansible file
 - name: Build mankka projects and get it's dependencies
   hosts: localhost
   tasks:

@@ -45,6 +45,10 @@ var (
 	listStyle = lipgloss.NewStyle().
 			Padding(0, 1).
 			BorderForeground(Mauve)
+	testilistStyle = lipgloss.NewStyle().
+			Padding(0, 1).
+			Width(80).
+			BorderForeground(Mauve)
 )
 
 type Item struct {
@@ -61,6 +65,7 @@ type Model struct {
 	inputErr string
 	focused  int
 	songDir  []string
+	cursor   int
 }
 
 func (m Model) Init() tea.Cmd {
@@ -83,7 +88,12 @@ func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 				// TODO Get path from sqlite database
 			case "q", "ctrl+c":
 				return m, tea.Quit
-			case "enter", "tab":
+			case "tab":
+				m.ti.SetSuggestions(m.readDirFiles(m.ti.Value()))
+			case "enter":
+				if len(m.ti.Value()) != 0 && m.ti.Value()[len(m.ti.Value())-1] == '/' {
+					m.ti.SetValue(m.ti.Value()[:len(m.ti.Value())-1])
+				}
 				m.inputErr = ""
 				m.focused = 1
 				cmds = m.createListOfFiles()
@@ -104,6 +114,8 @@ func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			case "tab":
 				m.focused = 0
 				m.resetLists()
+				m.ti.SetValue(m.ti.Value() + "/")
+				m.ti.SetCursor(len(m.ti.Value()))
 			case "enter":
 				var songId string
 
@@ -123,7 +135,7 @@ func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 }
 
 func (m Model) View() string {
-	if m.focused == 1 {
+	if m.focused == 2 {
 		pathSelectStyle = lipgloss.NewStyle().
 			Padding(0, 1).
 			Foreground(White)
@@ -135,12 +147,20 @@ func (m Model) View() string {
 			Foreground(Green)
 	}
 
+	var suslista string
+	suslista += "  Suggestions:"
+	for _, suggestion := range m.ti.AvailableSuggestions() {
+		suslista += fmt.Sprintf(" %s ", suggestion)
+	}
+
 	return ("\n" +
 		pathselectQuestionStyle.
 			Render("Give a path to your directory to play files from: ") +
 		"\n\n" +
 		pathSelectStyle.
 			Render(m.ti.View()) +
+		"\n\n" +
+		testilistStyle.Render(suslista) +
 		"\n\n" +
 		inputErrStyle.Render(m.inputErr) +
 		"\n\n" +
@@ -149,6 +169,31 @@ func (m Model) View() string {
 		"\n\n" +
 		fmt.Sprintln(customHelpMenu.CustomHelpView()) +
 		"\n")
+}
+
+func (m *Model) readDirFiles(path string) []string {
+	var files []string
+
+	if len(path) < 1 {
+		return files
+	}
+
+	if path[len(path)-1] != '/' {
+		lastSlashIndex := strings.LastIndex(path, "/")
+		path = path[:lastSlashIndex]
+	}
+
+	dir, err := os.ReadDir(path)
+	if err != nil {
+		fmt.Printf("Error reading dir path %v: %v\n", path, err)
+		return nil
+	}
+
+	for _, entry := range dir {
+		files = append(files, entry.Name())
+	}
+
+	return files
 }
 
 func (m *Model) resetLists() {
@@ -201,6 +246,7 @@ func parseSongId(inputSong string) string {
 }
 
 func initialModel(CliArg []string) Model {
+
 	ti := textinput.New()
 	ti.Placeholder = "/Your/path/here"
 
@@ -245,8 +291,7 @@ func initialModel(CliArg []string) Model {
 		Padding(0, 2)
 	list.SetShowStatusBar(false)
 	list.SetShowHelp(false)
-	//list.SetFilteringEnabled(false)
-
+	list.SetHeight(16)
 	initSongDir := []string{}
 
 	return Model{

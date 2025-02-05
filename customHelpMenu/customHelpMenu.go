@@ -14,21 +14,17 @@ var (
 )
 
 func CustomHelpView() string {
-	helpText := lipgloss.NewStyle().Width(50).Padding(0, 3).Render(
+	helpText := lipgloss.NewStyle().Padding(0, 3).Render(
 		fmt.Sprintf(
-			"%s %s       %s  %s \n%s %s       %s  %s \n%s %s    %s %s \n%s %s  %s  %s \n",
+			"%s %s       %s  %s        %s %s       %s  %s \n%s %s    %s %s   %s %s  %s  %s \n",
 
-			keyStyle.Render(" q "), descStyle.Render("quit"),
-			keyStyle.Render("Tab"), descStyle.Render("switch section"),
+			keyStyle.Render(" q "), descStyle.Render("Quit"), keyStyle.Render("Tab"), descStyle.Render("Section"),
 
-			keyStyle.Render("↓/j"), descStyle.Render("down"),
-			keyStyle.Render("↑/k"), descStyle.Render("up"),
+			keyStyle.Render("↓/j"), descStyle.Render("Down"), keyStyle.Render("↑/k"), descStyle.Render("Up"),
 
-			keyStyle.Render(" / "), descStyle.Render("filter"),
-			keyStyle.Render(" esc "), descStyle.Render("reset filtering"),
+			keyStyle.Render(" / "), descStyle.Render("Filter"), keyStyle.Render(" esc "), descStyle.Render("Reset filter"),
 
-			keyStyle.Render("←/h"), descStyle.Render("prev page"),
-			keyStyle.Render("→/l"), descStyle.Render("next page"),
+			keyStyle.Render("←/h"), descStyle.Render("Prev page"), keyStyle.Render("→/l"), descStyle.Render("Next page"),
 		),
 	)
 	return helpText

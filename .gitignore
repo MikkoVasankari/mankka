@@ -1,6 +1,4 @@
-# Ignore
 *mankka
 mankka.zip
 
-# Allow
-!ansible/
+!ansible/roles/mankka/

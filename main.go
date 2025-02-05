@@ -77,6 +77,10 @@ func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		switch msg := msg.(type) {
 		case tea.KeyMsg:
 			switch msg.String() {
+			case "ctrl+s":
+				// Save current path to sqlite database
+			case "ctrl+f":
+				// TODO Get path from sqlite database
 			case "q", "ctrl+c":
 				return m, tea.Quit
 			case "enter", "tab":

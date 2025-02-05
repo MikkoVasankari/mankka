@@ -1,0 +1,12 @@
+- name: Build mankka projects and get it's dependencies
+  hosts: localhost
+  tasks:
+    - name: Install mpv
+      become: yes
+      become_method: sudo
+      apt:
+        name: mpv
+        state: present
+
+    - name: Build mankka project
+      include_tasks: roles/mankka/mankka.yu

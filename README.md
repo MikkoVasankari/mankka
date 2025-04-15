@@ -65,3 +65,4 @@ mankka /path/to/your/dir
 - [ ] Create a sqlite db file for saving regularly used filepaths.
 - [ ] Make setting for no-video flag / In general make setting how mpv should act
 - [ ] Make that "shift + enter" updates the list of playable files if the entry is a directory
+- [ ] Add Current song to terminal title
